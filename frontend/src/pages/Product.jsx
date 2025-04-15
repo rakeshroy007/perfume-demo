@@ -49,8 +49,16 @@ const Product = () => {
     }, [id])
 
 
-    if (!product) return <p>Loading...</p>;
-
+    if (!product) {
+        return (
+            <div className="flex justify-center items-center h-screen bg-white">
+                <div className="text-center">
+                    <div className="w-12 h-12 border-4 border-blue-500 border-dashed rounded-full animate-spin mx-auto mb-4"></div>
+                    <p className="text-gray-700 text-lg font-semibold">Loading product details...</p>
+                </div>
+            </div>
+        );
+    }
     return (
         <div className='p-10'>
 
