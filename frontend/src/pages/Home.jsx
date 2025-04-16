@@ -37,34 +37,45 @@ const Home = () => {
 
             <OurBrands />
 
-            <div className='grid sm:grid-cols-2 md:grid-3 lg:grid-cols-4 gap-8 p-10'>
-                {
-                    products.map((product) => (
-                        <Link
-                            key={product._id}
-                            to={`/product/${product._id}`}
-                            className=' group bg-white border rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2'
-                        >
+            {
+                products.length === 0 ? (
+                    <div className="flex justify-center items-center h-60">
+                        <div className="text-center">
+                            <div className="w-12 h-12 border-4 border-blue-500 border-dashed rounded-full animate-spin mx-auto mb-4" />
+                            <p className="text-gray-700 text-lg font-semibold">Loading products...</p>
+                        </div>
+                    </div>
+                ) : (
+                    <div className='grid sm:grid-cols-2 md:grid-3 lg:grid-cols-4 gap-8 p-10'>
+                        {
+                            products.map((product) => (
+                                <Link
+                                    key={product._id}
+                                    to={`/product/${product._id}`}
+                                    className=' group bg-white border rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2'
+                                >
 
-                            {/* Product Image */}
-                            <div className='w-full h-80'>
-                                <img
-                                    src={product.image}
-                                    alt={product.name}
-                                    className="w-full h-full object-cover transition-opacity duration-300 rounded-md group-hover:opacity-90"
-                                />
-                            </div>
+                                    {/* Product Image */}
+                                    <div className='w-full h-80'>
+                                        <img
+                                            src={product.image}
+                                            alt={product.name}
+                                            className="w-full h-full object-cover transition-opacity duration-300 rounded-md group-hover:opacity-90"
+                                        />
+                                    </div>
 
-                            {/* Product Details */}
-                            <div className="p-5 text-center">
-                                <h2 className='text-lg font-bold text-gray-900 group-hover:text-blue-600 transition'>{product.name}</h2>
-                                <p className='text-sm text-gray-500 mt-2'>{product.description}</p>
-                                <p className='text-xl font-semibold text-blue-600 mt-3'>${product.price}</p>
-                            </div>
-                        </Link>
-                    ))
-                }
-            </div>
+                                    {/* Product Details */}
+                                    <div className="p-5 text-center">
+                                        <h2 className='text-lg font-bold text-gray-900 group-hover:text-blue-600 transition'>{product.name}</h2>
+                                        <p className='text-sm text-gray-500 mt-2'>{product.description}</p>
+                                        <p className='text-xl font-semibold text-blue-600 mt-3'>${product.price}</p>
+                                    </div>
+                                </Link>
+                            ))
+                        }
+                    </div>
+                )
+            }
 
             <footer className="text-center text-black p-3 md:p-5 border border-gray-300 ">
                 Designed and Developed with &#10084;
